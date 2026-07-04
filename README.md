@@ -14,3 +14,17 @@ docs/terra-voiceover-script.md         # Bella voiceover script + ffmpeg mux com
 2. When narration is ready, generate Bella voices from the script and mux onto clips per the docs.
 
 Stack: React + TypeScript + Tailwind + Phosphor icons.
+
+## Development Setup
+
+Contributors working with [Claude Code](https://claude.com/claude-code) on macOS can install the CLI via Homebrew:
+
+```bash
+brew install --cask claude-code
+```
+
+On Linux, install it instead via npm:
+
+```bash
+npm install -g @anthropic-ai/claude-code
+```
