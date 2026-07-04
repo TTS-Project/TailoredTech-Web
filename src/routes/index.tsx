@@ -1,21 +1,33 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SnapScrollHero } from "@/components/SnapScrollHero";
+import { Nav } from "@/components/tts/Nav";
+import { Footer } from "@/components/tts/Footer";
+import { Hero, Services, Projects, About, Contact } from "@/components/tts/Home";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Tailored Tech Solutions — AI Software Studio" },
-      { name: "description", content: "Tailored Tech Solutions builds production AI products, mobile apps, and bespoke engineering software. Studio of Andrew Gwaltney & Ameer Al Saati." },
-      { property: "og:title", content: "Tailored Tech Solutions — AI Software Studio" },
-      { property: "og:description", content: "Custom AI applications, embedded systems, and product experiences designed for the companies that refuse to be generic." },
+      { title: "Tailored Tech Solutions — AI Product Studio" },
+      {
+        name: "description",
+        content:
+          "Tailored Tech Solutions builds production AI agents, platforms, and mobile apps for clients — and owns a portfolio of products including Terra Farming and Big League Swings. Studio of Andrew Gwaltney & Ameer Al Saati.",
+      },
+      { property: "og:title", content: "Tailored Tech Solutions — AI Product Studio" },
+      {
+        property: "og:description",
+        content:
+          "Custom AI systems and software, built for clients who need it done right — and built the same way for the products we own outright.",
+      },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://tailoredtechsolutions.org/" },
-      { name: "twitter:title", content: "Tailored Tech Solutions — AI Software Studio" },
-      { name: "twitter:description", content: "Custom AI applications, embedded systems, and product experiences designed for the companies that refuse to be generic." },
+      { name: "twitter:title", content: "Tailored Tech Solutions — AI Product Studio" },
+      {
+        name: "twitter:description",
+        content:
+          "Custom AI systems and software, built for clients who need it done right — and built the same way for the products we own outright.",
+      },
     ],
-    links: [
-      { rel: "canonical", href: "https://tailoredtechsolutions.org/" },
-    ],
+    links: [{ rel: "canonical", href: "https://tailoredtechsolutions.org/" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -40,5 +52,17 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  return <SnapScrollHero />;
+  return (
+    <div className="bg-void min-h-screen">
+      <Nav />
+      <main>
+        <Hero />
+        <Services />
+        <Projects />
+        <About />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
+  );
 }
