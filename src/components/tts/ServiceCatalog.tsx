@@ -1,14 +1,6 @@
 import { useState } from 'react';
+import { useNavigate } from '@tanstack/react-router';
 import { SERVICES, CATEGORY_LABELS, formatPrice, getServiceById, type ServiceCategory } from '@/data/services';
-
-// Replaces the old 6-card generic Services section with the real, priced
-// 27-item catalog. Click a card to expand — shows what it is, what it
-// does, cross-sell suggestions, and a checkout CTA.
-//
-// Recurring items (SEO Optimization, Social Media Management, Professional
-// Support) show a "Subscribe" CTA that currently only surfaces a message
-// (see square-checkout.ts) since card-on-file collection isn't built yet.
-// One-time items redirect straight to a Square-hosted checkout page.
 
 const CATEGORIES: ServiceCategory[] = ['ai-automation', 'web-platform', 'brand-growth'];
 
@@ -26,6 +18,7 @@ function ServiceCard({ id }: { id: string }) {
   const [expanded, setExpanded] = useState(false);
   const [checkoutState, setCheckoutState] = useState<'idle' | 'loading' | 'error'>('idle');
   const [checkoutMessage, setCheckoutMessage] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const service = getServiceById(id);
   if (!service) return null;
@@ -46,8 +39,9 @@ function ServiceCard({ id }: { id: string }) {
         return;
       }
       if (data.type === 'needs-card-collection') {
-        setCheckoutMessage(data.message);
-        setCheckoutState('idle');
+        // Recurring item — send to the card-collection subscribe page
+        // instead of leaving them stuck.
+        navigate({ to: data.redirectPath });
         return;
       }
       throw new Error('Unexpected checkout response');
@@ -130,7 +124,7 @@ export function ServiceCatalog() {
             For companies that need it built.
           </h2>
           <p className="mt-4 text-secondary-soft leading-relaxed">
-            27 services across 3 categories. Click any one for exactly what's included —
+            26 services across 3 categories. Click any one for exactly what's included —
             no vague packages, no surprises at invoice time.
           </p>
         </div>

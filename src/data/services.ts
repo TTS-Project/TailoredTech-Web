@@ -1,4 +1,7 @@
-// Full service catalog — 27 items across 3 categories.
+// Full service catalog — 26 items across 3 categories (Premium Business
+// Website removed 2026-07 as a duplicate of Professional Business Website
+// (5-8 Pages) — flag Andrew if this was the wrong one to keep).
+//
 // Structural Engineering items (Engineering Report, Structural Calculations,
 // Construction Review) are intentionally excluded per standing instruction
 // to keep SE work separate from TTS.
@@ -6,8 +9,7 @@
 // Copy status: FIRST DRAFT. Written from typical industry scope for
 // services at these names/price points — NOT verified against actual
 // TTS delivery process. Andrew: review every description before this
-// goes live. Overselling scope you don't deliver is a real liability,
-// not just a copy nitpick.
+// goes live.
 
 export type ServiceCategory = 'ai-automation' | 'web-platform' | 'brand-growth';
 
@@ -147,22 +149,12 @@ export const SERVICES: Service[] = [
   // WEB & PLATFORM DEVELOPMENT
   // ─────────────────────────────────────────────
   {
-    id: 'premium-business-website',
-    name: 'Premium Business Website',
-    category: 'web-platform',
-    priceCents: 64500,
-    isRecurring: false,
-    whatItIs: 'An entry-tier business website — single-page or a small handful of sections, not a multi-page site.',
-    whatItDoes: 'Homepage-focused site covering your core pitch, services overview, and a contact path. Mobile-responsive, fast-loading, production code you own.',
-    pairsWith: ['seo-optimization', 'content-creation-package'],
-  },
-  {
     id: 'professional-business-website',
     name: 'Professional Business Website (5-8 Pages)',
     category: 'web-platform',
     priceCents: 99500,
     isRecurring: false,
-    whatItIs: 'A full multi-page business site — the standard tier above the single-page Premium option.',
+    whatItIs: 'A full multi-page business website built to production standard.',
     whatItDoes: 'Up to 8 distinct pages (Home, About, Services, individual service pages, Contact, etc.), full navigation structure, mobile-responsive, contact form wired to your email, basic on-page SEO.',
     pairsWith: ['brand-identity-package', 'seo-optimization'],
   },
@@ -278,7 +270,7 @@ export const SERVICES: Service[] = [
     isRecurring: false,
     whatItIs: 'A batch of finished content, not an ongoing subscription — a defined deliverable per purchase.',
     whatItDoes: 'A set number of pieces (blog posts, website copy, social captions) written to fill out a site or campaign that would otherwise launch with placeholder text.',
-    pairsWith: ['premium-business-website', 'social-media-management'],
+    pairsWith: ['professional-business-website', 'social-media-management'],
   },
   {
     id: 'seo-optimization',
