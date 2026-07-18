@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/tts/Nav";
 import { Footer } from "@/components/tts/Footer";
-import { Hero, Services, Projects, About, Contact } from "@/components/tts/Home";
+import { Hero, Projects, About, Contact } from "@/components/tts/Home";
+import { ServiceCatalog } from "@/components/tts/ServiceCatalog";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -10,7 +11,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Tailored Tech Solutions builds production AI agents, platforms, and mobile apps for clients — and owns a portfolio of products including Terra Farming and Big League Swings. Studio of Andrew Gwaltney & Ameer Al Saati.",
+          "Tailored Tech Solutions builds production AI agents, platforms, and mobile apps for clients — and owns a portfolio of products including Terra Farming and Big League Swings. Studio of Andrew Gwaltney.",
       },
       { property: "og:title", content: "Tailored Tech Solutions — AI Product Studio" },
       {
@@ -57,7 +58,7 @@ function Index() {
       <Nav />
       <main>
         <Hero />
-        <Services />
+        <ServiceCatalog />
         <Projects />
         <About />
         <Contact />
