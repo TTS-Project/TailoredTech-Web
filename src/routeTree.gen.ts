@@ -9,22 +9,57 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ProjectsTerraFarmingRouteImport } from './routes/projects.terra-farming'
-import { Route as ProjectsBigLeagueSwingsRouteImport } from './routes/projects.big-league-swings'
-import { Route as BlogHowToBuildCustomAiAgentsRouteImport } from './routes/blog.how-to-build-custom-ai-agents'
-import { Route as BlogAiAgentsCustomerSupportRouteImport } from './routes/blog.ai-agents-customer-support'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ApiCheckoutRouteImport } from './routes/api/checkout'
+import { Route as ApiCreateSubscriptionRouteImport } from './routes/api/create-subscription'
 import { Route as BlogAiAgentUseCasesRouteImport } from './routes/blog.ai-agent-use-cases'
+import { Route as BlogAiAgentsCustomerSupportRouteImport } from './routes/blog.ai-agents-customer-support'
+import { Route as BlogHowToBuildCustomAiAgentsRouteImport } from './routes/blog.how-to-build-custom-ai-agents'
+import { Route as ProjectsBigLeagueSwingsRouteImport } from './routes/projects.big-league-swings'
+import { Route as ProjectsTerraFarmingRouteImport } from './routes/projects.terra-farming'
+import { Route as SubscribeServiceIdRouteImport } from './routes/subscribe.$serviceId'
 
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const ApiCheckoutRoute = ApiCheckoutRouteImport.update({
+  id: '/api/checkout',
+  path: '/api/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCreateSubscriptionRoute = ApiCreateSubscriptionRouteImport.update({
+  id: '/api/create-subscription',
+  path: '/api/create-subscription',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogAiAgentUseCasesRoute = BlogAiAgentUseCasesRouteImport.update({
+  id: '/blog/ai-agent-use-cases',
+  path: '/blog/ai-agent-use-cases',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogAiAgentsCustomerSupportRoute =
+  BlogAiAgentsCustomerSupportRouteImport.update({
+    id: '/blog/ai-agents-customer-support',
+    path: '/blog/ai-agents-customer-support',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogHowToBuildCustomAiAgentsRoute =
+  BlogHowToBuildCustomAiAgentsRouteImport.update({
+    id: '/blog/how-to-build-custom-ai-agents',
+    path: '/blog/how-to-build-custom-ai-agents',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ProjectsBigLeagueSwingsRoute = ProjectsBigLeagueSwingsRouteImport.update({
+  id: '/projects/big-league-swings',
+  path: '/projects/big-league-swings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsTerraFarmingRoute = ProjectsTerraFarmingRouteImport.update({
@@ -32,106 +67,103 @@ const ProjectsTerraFarmingRoute = ProjectsTerraFarmingRouteImport.update({
   path: '/projects/terra-farming',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProjectsBigLeagueSwingsRoute = ProjectsBigLeagueSwingsRouteImport.update({
-  id: '/projects/big-league-swings',
-  path: '/projects/big-league-swings',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BlogHowToBuildCustomAiAgentsRoute =
-  BlogHowToBuildCustomAiAgentsRouteImport.update({
-    id: '/blog/how-to-build-custom-ai-agents',
-    path: '/blog/how-to-build-custom-ai-agents',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const BlogAiAgentsCustomerSupportRoute =
-  BlogAiAgentsCustomerSupportRouteImport.update({
-    id: '/blog/ai-agents-customer-support',
-    path: '/blog/ai-agents-customer-support',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const BlogAiAgentUseCasesRoute = BlogAiAgentUseCasesRouteImport.update({
-  id: '/blog/ai-agent-use-cases',
-  path: '/blog/ai-agent-use-cases',
+const SubscribeServiceIdRoute = SubscribeServiceIdRouteImport.update({
+  id: '/subscribe/$serviceId',
+  path: '/subscribe/$serviceId',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/api/checkout': typeof ApiCheckoutRoute
+  '/api/create-subscription': typeof ApiCreateSubscriptionRoute
   '/blog/ai-agent-use-cases': typeof BlogAiAgentUseCasesRoute
   '/blog/ai-agents-customer-support': typeof BlogAiAgentsCustomerSupportRoute
   '/blog/how-to-build-custom-ai-agents': typeof BlogHowToBuildCustomAiAgentsRoute
   '/projects/big-league-swings': typeof ProjectsBigLeagueSwingsRoute
   '/projects/terra-farming': typeof ProjectsTerraFarmingRoute
+  '/subscribe/$serviceId': typeof SubscribeServiceIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/api/checkout': typeof ApiCheckoutRoute
+  '/api/create-subscription': typeof ApiCreateSubscriptionRoute
   '/blog/ai-agent-use-cases': typeof BlogAiAgentUseCasesRoute
   '/blog/ai-agents-customer-support': typeof BlogAiAgentsCustomerSupportRoute
   '/blog/how-to-build-custom-ai-agents': typeof BlogHowToBuildCustomAiAgentsRoute
   '/projects/big-league-swings': typeof ProjectsBigLeagueSwingsRoute
   '/projects/terra-farming': typeof ProjectsTerraFarmingRoute
+  '/subscribe/$serviceId': typeof SubscribeServiceIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/api/checkout': typeof ApiCheckoutRoute
+  '/api/create-subscription': typeof ApiCreateSubscriptionRoute
   '/blog/ai-agent-use-cases': typeof BlogAiAgentUseCasesRoute
   '/blog/ai-agents-customer-support': typeof BlogAiAgentsCustomerSupportRoute
   '/blog/how-to-build-custom-ai-agents': typeof BlogHowToBuildCustomAiAgentsRoute
   '/projects/big-league-swings': typeof ProjectsBigLeagueSwingsRoute
   '/projects/terra-farming': typeof ProjectsTerraFarmingRoute
+  '/subscribe/$serviceId': typeof SubscribeServiceIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/sitemap.xml'
+    | '/api/checkout'
+    | '/api/create-subscription'
     | '/blog/ai-agent-use-cases'
     | '/blog/ai-agents-customer-support'
     | '/blog/how-to-build-custom-ai-agents'
     | '/projects/big-league-swings'
     | '/projects/terra-farming'
+    | '/subscribe/$serviceId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/sitemap.xml'
+    | '/api/checkout'
+    | '/api/create-subscription'
     | '/blog/ai-agent-use-cases'
     | '/blog/ai-agents-customer-support'
     | '/blog/how-to-build-custom-ai-agents'
     | '/projects/big-league-swings'
     | '/projects/terra-farming'
+    | '/subscribe/$serviceId'
   id:
     | '__root__'
     | '/'
     | '/sitemap.xml'
+    | '/api/checkout'
+    | '/api/create-subscription'
     | '/blog/ai-agent-use-cases'
     | '/blog/ai-agents-customer-support'
     | '/blog/how-to-build-custom-ai-agents'
     | '/projects/big-league-swings'
     | '/projects/terra-farming'
+    | '/subscribe/$serviceId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ApiCheckoutRoute: typeof ApiCheckoutRoute
+  ApiCreateSubscriptionRoute: typeof ApiCreateSubscriptionRoute
   BlogAiAgentUseCasesRoute: typeof BlogAiAgentUseCasesRoute
   BlogAiAgentsCustomerSupportRoute: typeof BlogAiAgentsCustomerSupportRoute
   BlogHowToBuildCustomAiAgentsRoute: typeof BlogHowToBuildCustomAiAgentsRoute
   ProjectsBigLeagueSwingsRoute: typeof ProjectsBigLeagueSwingsRoute
   ProjectsTerraFarmingRoute: typeof ProjectsTerraFarmingRoute
+  SubscribeServiceIdRoute: typeof SubscribeServiceIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -139,32 +171,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/projects/terra-farming': {
-      id: '/projects/terra-farming'
-      path: '/projects/terra-farming'
-      fullPath: '/projects/terra-farming'
-      preLoaderRoute: typeof ProjectsTerraFarmingRouteImport
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/projects/big-league-swings': {
-      id: '/projects/big-league-swings'
-      path: '/projects/big-league-swings'
-      fullPath: '/projects/big-league-swings'
-      preLoaderRoute: typeof ProjectsBigLeagueSwingsRouteImport
+    '/api/checkout': {
+      id: '/api/checkout'
+      path: '/api/checkout'
+      fullPath: '/api/checkout'
+      preLoaderRoute: typeof ApiCheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog/how-to-build-custom-ai-agents': {
-      id: '/blog/how-to-build-custom-ai-agents'
-      path: '/blog/how-to-build-custom-ai-agents'
-      fullPath: '/blog/how-to-build-custom-ai-agents'
-      preLoaderRoute: typeof BlogHowToBuildCustomAiAgentsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/blog/ai-agents-customer-support': {
-      id: '/blog/ai-agents-customer-support'
-      path: '/blog/ai-agents-customer-support'
-      fullPath: '/blog/ai-agents-customer-support'
-      preLoaderRoute: typeof BlogAiAgentsCustomerSupportRouteImport
+    '/api/create-subscription': {
+      id: '/api/create-subscription'
+      path: '/api/create-subscription'
+      fullPath: '/api/create-subscription'
+      preLoaderRoute: typeof ApiCreateSubscriptionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/ai-agent-use-cases': {
@@ -174,18 +199,66 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogAiAgentUseCasesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/ai-agents-customer-support': {
+      id: '/blog/ai-agents-customer-support'
+      path: '/blog/ai-agents-customer-support'
+      fullPath: '/blog/ai-agents-customer-support'
+      preLoaderRoute: typeof BlogAiAgentsCustomerSupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/how-to-build-custom-ai-agents': {
+      id: '/blog/how-to-build-custom-ai-agents'
+      path: '/blog/how-to-build-custom-ai-agents'
+      fullPath: '/blog/how-to-build-custom-ai-agents'
+      preLoaderRoute: typeof BlogHowToBuildCustomAiAgentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/big-league-swings': {
+      id: '/projects/big-league-swings'
+      path: '/projects/big-league-swings'
+      fullPath: '/projects/big-league-swings'
+      preLoaderRoute: typeof ProjectsBigLeagueSwingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/terra-farming': {
+      id: '/projects/terra-farming'
+      path: '/projects/terra-farming'
+      fullPath: '/projects/terra-farming'
+      preLoaderRoute: typeof ProjectsTerraFarmingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/subscribe/$serviceId': {
+      id: '/subscribe/$serviceId'
+      path: '/subscribe/$serviceId'
+      fullPath: '/subscribe/$serviceId'
+      preLoaderRoute: typeof SubscribeServiceIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ApiCheckoutRoute: ApiCheckoutRoute,
+  ApiCreateSubscriptionRoute: ApiCreateSubscriptionRoute,
   BlogAiAgentUseCasesRoute: BlogAiAgentUseCasesRoute,
   BlogAiAgentsCustomerSupportRoute: BlogAiAgentsCustomerSupportRoute,
   BlogHowToBuildCustomAiAgentsRoute: BlogHowToBuildCustomAiAgentsRoute,
   ProjectsBigLeagueSwingsRoute: ProjectsBigLeagueSwingsRoute,
   ProjectsTerraFarmingRoute: ProjectsTerraFarmingRoute,
+  SubscribeServiceIdRoute: SubscribeServiceIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
