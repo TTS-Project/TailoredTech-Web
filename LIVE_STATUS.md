@@ -1,5 +1,5 @@
 # TTS Live Status
-*Last updated: 2026-07-31 — first verified run*
+*Last updated: 2026-07-31 — first verified run + Netlify connector status confirmed dead*
 *This file is the source of truth for Deploy Verification checks. Claude reads AND writes this file directly via GitHub — no manual upload step required.*
 
 ---
@@ -12,7 +12,17 @@
 | TTS Mobile App | TTS-Project/TailoredTechMobile | Agriculture | 11f6e0d793c6d52d08f747c7b4039ea02ab1e133 | 2026-07-31 |
 
 **Netlify Site ID:** e91fc546-35ba-4468-87c5-f404cc2f5ee4 · team slug: tailoredtechsolutions
-**Known limitation:** No working Netlify API/MCP connection. `curl -sI` confirms the site responds (200 OK) but cannot confirm which commit is actually deployed — no build-ID or last-modified header exposed. This is a standing gap, not an oversight. Closing it requires either a working Netlify connector or a pasted Netlify personal access token per session (not stored here — token is a secret, never committed).
+
+### Netlify connector — CONFIRMED DEAD, do not retry (2026-07-31)
+The Netlify MCP connector has been non-functional for weeks. Not a one-off glitch, not fixable by toggling or reauthorizing this session. **Stop suggesting reconnection in future checks.** No alternative API path exists via Composio either (checked directly — only Vercel tools surface, no Netlify toolkit at all).
+
+**Ceiling without it:** `curl -sI` against the live URL confirms the site responds (200 OK) but cannot confirm which commit is deployed — no build-ID/last-modified header exposed this way. Treat this as permanent until one of the two paths below is set up.
+
+**Two actual fixes available — neither depends on the broken connector or account recovery:**
+1. **Build Hook** (solves the manual-deploy-trigger problem): Andrew generates a Build Hook URL once in Netlify dashboard (Site settings → Build & deploy → Build hooks → Add build hook). Once he has that URL, Claude can trigger a deploy directly via `curl -X POST <hook-url>` — no login, no OAuth, no MCP needed.
+2. **Personal Access Token** (solves the deploy-verification problem): Andrew generates a PAT in Netlify (User settings → Applications → New access token). Pasted per-session when exact verification is wanted, Claude queries `api.netlify.com/api/v1/sites/{site_id}/deploys` directly for exact commit SHA + deploy state. Never stored — it's a credential, not status data, and doesn't belong in a committed file.
+
+Until either exists, Deploy Verification will report Netlify status as "site responds, commit unconfirmed" and stop there — not guess further.
 
 ---
 
@@ -26,6 +36,7 @@
 | Placeholder testimonials (Testimonials.tsx) | NOT CHECKED 2026-07-31 | Not verified this run — check next pass |
 | Terra Farming iOS compliance (privacy manifest, Login w/ Apple, WebView restrictions, deep links) | NOT CHECKED 2026-07-31 | Not verified this run — check next pass |
 | Ameer Al Saati removal from TTS web copy | RESOLVED (2026-07-15) | Confirmed complete across five files per prior session. Do not reintroduce without explicit instruction. |
+| Netlify account access | Andrew confirmed connector-side, not account-side (2026-07-31) | Site itself unaffected — lockout risk is separate from the connector issue and hasn't been raised as an active account-recovery need |
 
 ---
 
@@ -41,9 +52,10 @@
 - Terra Farming `.env` exposure — the standing example of what "flag immediately, don't let it pass" means. Treat any future similar exposure with the same severity.
 - Any webhook stub is the same category — a stub is not "done" because a route exists.
 - Do not mark testimonials RESOLVED without seeing an actual client quote in the file, not just the placeholder gone.
+- Do not re-suggest Netlify MCP reconnection — confirmed dead for weeks as of 2026-07-31. Only re-open this if Andrew explicitly says the connector situation has changed.
 
 ---
 
 ## How This File Gets Updated
 
-Claude reads this file directly from GitHub at the start of every Deploy Verification run — no upload, no Project-knowledge dependency. At the end of each run, Claude commits the updated version back to this same path. The only manual step left is running the check itself.
+Claude reads this file directly from GitHub at the start of every Deploy Verification run — no upload, no Project-knowledge dependency. At the end of each run, Claude commits the updated version back to this same path. The only manual step left is running the check itself — and, separately, setting up the Build Hook / PAT above if exact Netlify verification is wanted.
