@@ -102,10 +102,6 @@ export function Hero() {
               See What We've Built
             </a>
           </div>
-
-          <div className="mt-10 text-xs font-mono text-muted-soft">
-            Andrew Gwaltney &amp; Ameer Al Saati — Makati City, Philippines
-          </div>
         </div>
 
         {/* Right: the dual model, stated plainly */}
@@ -263,10 +259,9 @@ export function About() {
         </div>
         <div className="text-secondary-soft leading-relaxed space-y-5 text-base">
           <p>
-            Tailored Tech Solutions was founded by Andrew Gwaltney and Ameer Al Saati.
+            Tailored Tech Solutions was founded by Andrew Gwaltney.
             We run a dual-model studio: consulting engagements that fund an in-house
-            portfolio of products we build and own outright. Based in Makati City,
-            Philippines.
+            portfolio of products we build and own outright. Based in Casper, WY.
           </p>
           <p>
             Our founder is also a licensed structural engineer. Rigor isn't a value
